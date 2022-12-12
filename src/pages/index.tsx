@@ -5,49 +5,29 @@ import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
-  QuestionMarkCircleIcon,
-  ShoppingBagIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { trpc } from "../utils/trpc";
+import Footer from "../components/Footer";
+import RestaurantTitle from "../components/restaurantTitle";
 
-const currentMonth = new Date().getMonth();
-const currentYear = new Date().getFullYear();
-let currentSeason = "";
-if (currentMonth < 2 || currentMonth === 2){
-  currentSeason = "Winter";
-} else if (currentMonth < 5 || currentMonth === 5){
-  currentSeason = "Spring";
-} else if (currentMonth < 8 || currentMonth === 8){
-  currentSeason = "Summer";
-} else if (currentMonth < 11 || currentMonth === 11){
-  currentSeason = "Fall";
+// NOTE: use Baskerville for course menu and drink menu
+
+const courseMenu = {
+  first: "",
+  firstDescription: "",
+  second: "",
+  secondDescription: "",
+  third: "",
+  thirdDescription: "",
 }
 
-const categories = [
-  {
-    name: 'New Arrivals',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-01.jpg',
-  },
-  {
-    name: 'Productivity',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-02.jpg',
-  },
-  {
-    name: 'Workspace',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-04.jpg',
-  },
-  {
-    name: 'Accessories',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-05.jpg',
-  },
-  { name: 'Sale', href: '#', imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-03.jpg' },
-]
+const drinkMenu = {
+  coffee: ["espresso", "americano", "cappuccino", "flat white", "latte"],
+  tea: ["jasmine green tea / tea latte", "lemon ginger tea / tea latte"],
+  cocktail: "",
+  mocktail: ""
+}
 const collections = [
   {
     name: 'Handcrafted Collection',
@@ -77,182 +57,288 @@ function classNames(...classes:string[]) {
 }
 
 const Home: NextPage = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
       <Head>
-        <title>House of {currentSeason}</title>
+        <title>{RestaurantTitle()}</title>
       </Head>
       <div className="bg-white">
-      {/* Mobile menu */}
-      <Transition.Root show={mobileMenuOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileMenuOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+        {/* Mobile menu */}
+        <Transition.Root show={mobileMenuOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-40 lg:hidden"
+            onClose={setMobileMenuOpen}
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 z-40 flex">
             <Transition.Child
               as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
-                <div className="flex px-4 pt-5 pb-2">
-                  <button
-                    type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-              </Dialog.Panel>
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
+
+            <div className="fixed inset-0 z-40 flex">
+              <Transition.Child
+                as={Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
+              >
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+                  <div className="flex px-4 pt-5 pb-2">
+                    <button
+                      type="button"
+                      className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span className="sr-only">Close menu</span>
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        {/* Hero section */}
+        <div className="relative bg-gray-900">
+          {/* Decorative image and overlay */}
+          <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
+            <img
+              src="images/LandscapeFallWinter.jpg"
+              alt=""
+              className="h-full w-full object-cover object-center"
+            />
           </div>
-        </Dialog>
-      </Transition.Root>
-
-      {/* Hero section */}
-      <div className="relative bg-gray-900">
-        {/* Decorative image and overlay */}
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <img
-            src="images/LandscapeFallWinter.jpg"
-            alt=""
-            className="h-full w-full object-cover object-center"
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gray-900 opacity-50"
           />
-        </div>
-        <div aria-hidden="true" className="absolute inset-0 bg-gray-900 opacity-50" />
 
-        {/* Navigation */}
-        <header className="relative z-10">
-          <nav aria-label="Top">
-            {/* Secondary navigation */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div>
-                  <div className="flex h-16 items-center justify-between">
-                    {/* Logo (lg+) */}
-                    <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                      <a href="#">
-                        <span className="sr-only">House of {currentSeason}</span>
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                          alt=""
-                        />
-                      </a>
-                    </div>
-                    {/* Logo (lg-) */}
-                    <a href="#" className="lg:hidden">
-                      <span className="sr-only">Your Company</span>
-                      <img src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="" className="h-8 w-auto" />
-                    </a>
-
-                    <div className="flex flex-1 items-center justify-end">
-                      <a href="#" className="hidden text-sm font-medium text-white lg:block">
-                        Event History
-                      </a>
-
-                      <div className="flex items-center lg:ml-8">
-                        {/* Help */}
-                        <a href="#" className="p-2 text-white lg:hidden">
-                          <span className="sr-only">Help</span>
-                          <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true" />
+          {/* Navigation */}
+          <header className="relative z-10">
+            <nav aria-label="Top">
+              {/* Secondary navigation */}
+              <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                  <div>
+                    <div className="flex h-16 items-center justify-between">
+                      {/* Logo (lg+) */}
+                      <div className="lg:flex lg:flex-1 lg:items-center ">
+                        <a href="/">
+                          <span className="sr-only">{RestaurantTitle()}</span>
+                          <img
+                            className="inline h-8 w-auto"
+                            src="/images/logo.png"
+                            alt=""
+                          />
+                          <p className="inline pl-2 font-sans text-xl font-medium text-white">
+                            {RestaurantTitle()}
+                          </p>
                         </a>
-                        <a href="#" className="hidden text-sm font-medium text-white lg:block">
-                          Contact Me
-                        </a>
+                      </div>
+                      {/* Logo (lg-) */}
+                      <div className="flex flex-1 items-center justify-end">
+                        <Link
+                          href="/eventHistory"
+                          className="hidden font-sans text-lg text-white md:block"
+                        >
+                          Event History
+                        </Link>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href=""
+                            className="hidden font-sans text-lg text-white md:block"
+                          >
+                            Chef's Personal Website
+                          </Link>
+                        </div>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href="/contactPage"
+                            className="hidden font-sans text-lg text-white md:block"
+                          >
+                            Contact Me
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </nav>
+          </header>
+
+          <div className="relative mx-auto flex max-w-5xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
+            <h1 className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
+              Welcome to the {RestaurantTitle()}.
+            </h1>
+            <p className="mt-4 text-xl text-white">
+              Please take a look at the course menu and drink menu below.
+              <br></br>
+              <br></br>
+              If you would like a drink or have any dietary restrictions, please{" "}
+              <br></br>
+              submit a response below so I know about it in advance.
+            </p>
+          </div>
+        </div>
+        <main>
+          {/* Category section */}
+          <section
+            aria-labelledby="category-heading"
+            className="pt-6 sm:pt-6 xl:mx-auto xl:max-w-7xl xl:px-8"
+          >
+            <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
+              <h2
+                id="category-heading"
+                className="text-4xl font-bold tracking-tight text-gray-900"
+              >
+                Course Menu...
+                <p className="text-lg">
+                  ...based on{" "}
+                  <a
+                    className="italic text-blue-500"
+                    href="https://texasfarmersmarket.org/in-season/"
+                  >
+                    What's In Season.
+                  </a>
+                </p>
+              </h2>
             </div>
-          </nav>
-        </header>
-
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
-          <h1 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">Welcome.</h1>
-          <p className="mt-4 text-xl text-white">
-            Please take a look at the course menu and drink menu below. 
-            <br></br>If you would like a drink, please submit an order 
-            to let me prepare it in advance.
-          </p>
-        </div>
-      </div>
-      <main>
-        {/* Category section */}
-        <section aria-labelledby="category-heading" className="pt-12 sm:pt-12 xl:mx-auto xl:max-w-7xl xl:px-8">
-          <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
-            <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
-              Course Menu
-            </h2>
-          </div>
-        </section>
-        <section aria-labelledby="category-heading" className="pt-12 sm:pt-12 xl:mx-auto xl:max-w-7xl xl:px-8">
-          <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
-            <h2 id="category-heading" className="text-2xl font-bold tracking-tight text-gray-900">
-              Drink Menu
-            </h2>
-          </div>
-        </section>
-
-        {/* Collection section */}
-        <section
-          aria-labelledby="collection-heading"
-          className="mx-auto max-w-xl px-4 pt-12 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
-        >
-          <h2 id="collection-heading" className="text-2xl font-bold tracking-tight text-gray-900">
-            Shop by Collection
-          </h2>
-          <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
-            {collections.map((collection) => (
-              <a key={collection.name} href={collection.href} className="group block">
-                <div
-                  aria-hidden="true"
-                  className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                >
-                  <img
-                    src={collection.imageSrc}
-                    alt={collection.imageAlt}
-                    className="h-full w-full object-cover object-center"
-                  />
+            <div className="relative overflow-hidden bg-white py-4">
+              <div className="relative px-8 sm:px-8 lg:px-10">
+                <div className="max-w-prose font-Baskervville text-lg">
+                  <h1>
+                    <span className="block text-left text-2xl font-bold leading-6 tracking-tight text-gray-900 sm:text-2xl">
+                      First Course
+                    </span>
+                  </h1>
+                  <p className="text-left text-lg leading-6">Dish Name</p>
+                  <p className="text-left text-base leading-6">
+                    Ingredients + Description
+                  </p>
                 </div>
-                <h3 className="mt-4 text-base font-semibold text-gray-900">{collection.name}</h3>
-                <p className="mt-2 text-sm text-gray-500">{collection.description}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-      </main>
+              </div>
+            </div>
+          </section>
+          <section
+            aria-labelledby="category-heading"
+            className="pt-2 sm:pt-2 xl:mx-auto xl:max-w-7xl xl:px-8"
+          >
+            <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
+              <h2
+                id="category-heading"
+                className="text-4xl font-bold tracking-tight text-gray-900"
+              >
+                Drink Menu
+              </h2>
+            </div>
+            <div className="relative overflow-hidden bg-white py-4">
+              <div className="relative px-8 sm:px-8 lg:px-10">
+                <div className="max-w-prose font-Baskervville text-lg">
+                  <h1>
+                    <span className="block text-left text-2xl font-bold leading-6 tracking-tight text-gray-900 sm:text-2xl">
+                      Coffee + Tea
+                    </span>
+                  </h1>
+                  <p className="text-left text-lg leading-6">Drink</p>
+                  <p className="text-left text-base leading-6">
+                    Ingredients + Description if applicable
+                  </p>
+                </div>
+                <div className="mt-2 max-w-prose font-Baskervville text-lg">
+                  <h1>
+                    <span className="block text-left text-2xl font-bold leading-6 tracking-tight text-gray-900 sm:text-2xl">
+                      Cocktail + Mocktail
+                    </span>
+                  </h1>
+                  <p className="text-left text-lg leading-6">Drink</p>
+                  <p className="text-left text-base leading-6">
+                    Ingredients + Description if applicable
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="pt-6 sm:pt-6 xl:mx-auto xl:max-w-7xl xl:px-8">
+            <div className="relative">
+              <h2 className="text-3xl px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0 font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Drink / Dietary Restriction Request
+              </h2>
+            </div>
+            <div className="relative pt-2 px-8 sm:px-8 lg:px-10">
+              <p className="block text-left text-lg leading-6 ">
+                Please submit a drink request at least an hour in advance, and
+                submit a dietary restriction request at least 2 days in advance.
+              </p>
+            </div>
+            <div className="mt-2 px-8 sm:px-8 lg:px-10">
+              <form
+                action="#"
+                method="POST"
+                className="grid grid-cols-1 gap-y-3 sm:grid-cols-2 sm:gap-x-8"
+              >
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-base font-medium text-gray-700"
+                  >
+                    Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      autoComplete="name"
+                      className="block w-full rounded-md border-gray-300 py-2 px-4 shadow-sm"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-base font-medium text-gray-700"
+                  >
+                    Message
+                  </label>
+                  <div className="mt-1">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className="block w-full rounded-md border-gray-300 py-2 px-4 shadow-sm"
+                      defaultValue={""}
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2 lg:max-w-xl mb-6">
+                  <button
+                    type="submit"
+                    className="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
 
-      <footer aria-labelledby="footer-heading" className="bg-gray-900">
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-t border-gray-800 py-4">
-            <p className="text-sm text-gray-400">Copyright &copy; {currentYear} Pochi Chao</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        <Footer />
+      </div>
     </>
   );
 };

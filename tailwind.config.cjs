@@ -2,7 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {fontFamily: {
+      'Baskervville': ['Baskervville', 'serif'],
+    }},
   },
   plugins: [require('@tailwindcss/forms'),
   require('@tailwindcss/aspect-ratio'),],
