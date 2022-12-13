@@ -12,29 +12,113 @@ import { trpc } from "../utils/trpc";
 import Footer from "../components/Footer";
 import RestaurantTitle from "../components/restaurantTitle";
 
-const collections = [
+const previousEvents = [
   {
-    name: 'Handcrafted Collection',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
-    imageAlt: 'Brown leather key ring with brass metal loops and rivets on wood table.',
-    description: 'Keep your phone, keys, and wallet together, so you can lose everything at once.',
+    date: "November 2022",
+    courseOne: 
+    {
+      dishName: "Mashed Potatoes, Broccoli with Balsamic Glaze, Roasted Garlic Dip",
+      description: "",
+      img: "/images/cookingportfolio/11_5_22_First.JPG"
+    },
+    courseTwo:
+    {
+      dishName: "Curry-Soy Spiced Chicken, ",
+      description: "",
+      img: "#"
+    },
+    courseThree:
+    {
+      dishName: "Lemon-Cornmeal Poundcake with Powdered Sugar",
+      description: "",
+      img: "#"
+    },
   },
   {
-    name: 'Organized Desk Collection',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg',
-    imageAlt: 'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
+    date: "August 2022",
+    courseOne: 
+    {
+      dishName: "",
+      description: "",
+      img: "#"
+    },
+    courseTwo:
+    {
+      dishName: "Japanese Curry with Velveted Chicken",
+      description: "Sides: Kelp Noodle Salad, Spinach Ohitaishi, Korean Greens Salad, Zucchini with Fish Sauce Glaze",
+      img: "/images/cookingportfolio/8_27_22_Overall.jpg"
+    },
+    courseThree:
+    {
+      dishName: "Lemon Peel Panna Cotta",
+      description: "",
+      img: ""
+    },
   },
   {
-    name: 'Focus Collection',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
-    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
-    description: 'Be more productive than enterprise project managers with a single piece of paper.',
+    date: "July 2022 Dinner",
+    courseOne: 
+    {
+      dishName: "Poached Egg, Charred Green Beans, Squash Bed",
+      description: "",
+      img: "/images/cookingportfolio/7_16_22_First.jpg"
+    },
+    courseTwo:
+    {
+      dishName: "Beet Greens, Walnuts, Pine Nuts Galette with Roasted Beets, Cucumber Salad",
+      description: "",
+      img: "/images/cookingportfolio/7_16_22_Second.jpg"
+    },
+    courseThree:
+    {
+      dishName: "White Chocolate Banana Oatmeal Bread with Espresso Affogato",
+      description: "",
+      img: "/images/cookingportfolio/7_16_22_Third.jpg"
+    },
   },
-]
+  {
+    date: "July 2022 Brunch",
+    courseOne: 
+    {
+      dishName: "",
+      description: "",
+      img: ""
+    },
+    courseTwo:
+    {
+      dishName: "Tacos - Chicken Chile Verde, Carnitas, Refried Beans, Eggs, Roasted Potatoes",
+      description: "Components - Avocadoes, Cucumbers, Cilantro, Limes, Pickled Onions",
+      img: "/images/cookingportfolio/7_9_22_Overall.jpg"
+    },
+    courseThree:
+    {
+      dishName: "",
+      description: "",
+      img: ""
+    },
+  },
+  {
+    date: "March 2022",
+    courseOne: 
+    {
+      dishName: "Crudités with Hummus, Baba Ghanoush, and Chimichurri",
+      description: "",
+      img: "/images/cookingportfolio/3_19_22_First.jpg"
+    },
+    courseTwo:
+    {
+      dishName: "Yorkshire Pudding with Fried Eggs, Sausages, Chives",
+      description: "Sides - Charred Radishes, Pistachio-Arugula Salad with Tahini Dressing, Roasted Pork Tenderloin",
+      img: "/images/cookingportfolio/3_19_22_Overall.jpg"
+    },
+    courseThree:
+    {
+      dishName: "Coffee Cake with Cinnamon Crumb",
+      description: "",
+      img: "/images/cookingportfolio/3_19_22_Third.jpg"
+    },
+  },
+];
 
 function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
@@ -182,45 +266,45 @@ const Home: NextPage = () => {
         </div>
         <main>
           {/* Collection section */}
-          <section
-            aria-labelledby="collection-heading"
-            className="mx-auto max-w-xl px-4 pt-12 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
-          >
-            <h2
-              id="collection-heading"
-              className="text-2xl font-bold tracking-tight text-gray-900"
+          {previousEvents.map((previousEvent) => (
+            <section
+              aria-labelledby="collection-heading"
+              className="mx-auto max-w-xl px-4 pt-12 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
             >
-              Shop by Collection
-            </h2>
-            <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
-              {collections.map((collection) => (
-                <a
-                  key={collection.name}
-                  href={collection.href}
-                  className="group block"
-                >
+              <h2
+                id="collection-heading"
+                className="text-2xl font-bold tracking-tight text-gray-900"
+              >
+                {previousEvent.date}
+              </h2>
+              <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
+                <div className="group block">
                   <div
                     aria-hidden="true"
                     className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
                   >
                     <img
-                      src={collection.imageSrc}
-                      alt={collection.imageAlt}
+                      src={previousEvent.courseOne.img}
+                      alt={
+                        previousEvent.courseOne.dishName +
+                        " " +
+                        previousEvent.courseOne.description
+                      }
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
                   <h3 className="mt-4 text-base font-semibold text-gray-900">
-                    {collection.name}
+                    {previousEvent.courseOne.dishName}
                   </h3>
                   <p className="mt-2 mb-6 text-sm text-gray-500">
-                    {collection.description}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </section>
+                    {previousEvent.courseOne.description}
+                  </p> 
+                   
+                </div>
+              </div>
+            </section>
+          ))}
         </main>
-
         <Footer />
       </div>
     </>

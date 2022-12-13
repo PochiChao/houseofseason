@@ -1,4 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Baskervville&display=swap")
+@import url("https://fonts.googleapis.com/css2?family=Baskervville&display=swap");
+
+.super {
+    top: -0.5em;
+    vertical-align: super;
+    font-size: 60%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.sub {
+    bottom: -0.25em;
+    vertical-align: sub;
+    font-size: 50%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}

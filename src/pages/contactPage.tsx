@@ -111,23 +111,22 @@ const Home: NextPage = () => {
                         <div className="flex flex-1 items-center justify-end">
                           <Link
                             href="/eventHistory"
-                            className="hidden font-sans text-lg text-white lg:block"
+                            className="hidden font-sans text-lg text-white md:block"
                           >
                             Event History
                           </Link>
-
-                          <div className="flex items-center lg:ml-8">
-                            {/* Help */}
-                            <a href="#" className="p-2 text-white lg:hidden">
-                              <span className="sr-only">Help</span>
-                              <QuestionMarkCircleIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                            </a>
+                          <div className="flex items-center md:ml-8">
+                            <Link
+                              href=""
+                              className="hidden font-sans text-lg text-white md:block"
+                            >
+                              Chef's Personal Website
+                            </Link>
+                          </div>
+                          <div className="flex items-center md:ml-8">
                             <Link
                               href="/contactPage"
-                              className="hidden font-sans text-lg text-white lg:block"
+                              className="hidden font-sans text-lg text-white md:block"
                             >
                               Contact Me
                             </Link>
@@ -165,48 +164,48 @@ const Home: NextPage = () => {
               </div> */}
               <div className="py-2">
                 <a
-                  className="inline-block h-10 w-10"
+                  className="inline h-10 w-10"
                   href="https://www.instagram.com/pochichao/"
                 >
                   <img
-                    className="inline-block h-10 w-10"
+                    className="inline h-10 w-10"
                     src="https://cdn-icons-png.flaticon.com/512/4138/4138124.png"
                     alt="Instagram"
                   />
+                  <p className="inline pl-2 font-sans text-xl font-medium">
+                    Instagram
+                  </p>
                 </a>
-                <p className="inline-block pl-2 font-sans text-xl font-medium">
-                  Instagram
-                </p>
               </div>
               <div className="py-2">
                 <a
-                  className="inline-block h-10 w-10"
+                  className="inline h-10 w-10"
                   href="https://github.com/PochiChao"
                 >
                   <img
-                    className="inline-block h-10 w-10"
+                    className="inline h-10 w-10"
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                     alt="Github"
                   />
+                  <p className="inline pl-2 font-sans text-xl font-medium">
+                    Github
+                  </p>
                 </a>
-                <p className="inline-block pl-2 font-sans text-xl font-medium">
-                  Github
-                </p>
               </div>
               <div className="pt-2 pb-6">
                 <a
-                  className="inline-block h-10 w-10"
+                  className="inline h-10 w-10"
                   href="mailto:19pochi94@gmail.com"
                 >
                   <img
-                    className="inline-block h-10 w-10"
+                    className="inline h-10 w-10"
                     src="/images/gmailLogo.webp"
                     alt="Gmail"
                   />
+                  <p className="inline pl-2 font-sans text-xl font-medium">
+                    Email
+                  </p>
                 </a>
-                <p className="inline-block pl-2 font-sans text-xl font-medium">
-                  Email
-                </p>
               </div>
             </section>
           </main>
