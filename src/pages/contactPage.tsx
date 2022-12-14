@@ -2,10 +2,9 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
-  QuestionMarkCircleIcon,
   XMarkIcon,
 
 } from '@heroicons/react/24/outline'
@@ -73,7 +72,7 @@ const Home: NextPage = () => {
                             href=""
                             className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
                           >
-                            Chef's Personal Website
+                            Chef&apos;s Personal Website
                           </Link>
                         </div>
                         <div className="flex items-center md:ml-8">
@@ -115,7 +114,7 @@ const Home: NextPage = () => {
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
                       <div className="hidden lg:flex lg:flex-1 lg:items-center ">
-                        <a href="/">
+                        <div>
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
                             className="inline h-8 w-auto"
@@ -125,7 +124,7 @@ const Home: NextPage = () => {
                           <p className="inline pl-2 font-sans text-xl font-medium text-white">
                             {RestaurantTitle()}
                           </p>
-                        </a>
+                        </div>
                       </div>
 
                       <div className="flex flex-1 items-center md:hidden">
@@ -139,7 +138,7 @@ const Home: NextPage = () => {
                         </button>
                       </div>
                       {/* Logo (lg-) */}
-                      <a href="#" className="lg:hidden">
+                      <div className="lg:hidden">
                         <span className="sr-only">Your Company</span>
                         <img
                           src="/images/logo.png"
@@ -149,7 +148,7 @@ const Home: NextPage = () => {
                         <p className="inline pl-2 font-sans text-xl font-medium text-white">
                           {RestaurantTitle()}
                         </p>
-                      </a>
+                      </div>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
@@ -197,7 +196,7 @@ const Home: NextPage = () => {
               className="pt-6 px-8 sm:pt-6 xl:mx-auto xl:max-w-7xl"
             >
               <div className="py-2">
-                <a
+                <Link
                   className="inline h-10 w-10"
                   href="https://www.instagram.com/pochichao/"
                 >
@@ -209,10 +208,10 @@ const Home: NextPage = () => {
                   <p className="inline pl-2 font-sans text-xl font-medium">
                     Instagram
                   </p>
-                </a>
+                </Link>
               </div>
               <div className="py-2">
-                <a
+                <Link
                   className="inline h-10 w-10"
                   href="https://github.com/PochiChao"
                 >
@@ -224,10 +223,10 @@ const Home: NextPage = () => {
                   <p className="inline pl-2 font-sans text-xl font-medium">
                     Github
                   </p>
-                </a>
+                </Link>
               </div>
               <div className="pt-2 pb-6">
-                <a
+                <Link
                   className="inline h-10 w-10"
                   href="mailto:19pochi94@gmail.com"
                 >
@@ -239,7 +238,7 @@ const Home: NextPage = () => {
                   <p className="inline pl-2 font-sans text-xl font-medium">
                     Email
                   </p>
-                </a>
+                </Link>
               </div>
             </section>
           </main>

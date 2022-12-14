@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
   XMarkIcon,
@@ -171,7 +171,7 @@ const Home: NextPage = () => {
                             href=""
                             className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
                           >
-                            Chef's Personal Website
+                            Chef&apos;s Personal Website
                           </Link>
                         </div>
                         <div className="flex items-center md:ml-8">
@@ -213,7 +213,7 @@ const Home: NextPage = () => {
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
                       <div className="hidden lg:flex lg:flex-1 lg:items-center ">
-                        <a href="/">
+                        <div>
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
                             className="inline h-8 w-auto"
@@ -223,7 +223,7 @@ const Home: NextPage = () => {
                           <p className="inline pl-2 font-sans text-xl font-medium text-white">
                             {RestaurantTitle()}
                           </p>
-                        </a>
+                        </div>
                       </div>
 
                       <div className="flex flex-1 items-center md:hidden">
@@ -237,7 +237,7 @@ const Home: NextPage = () => {
                         </button>
                       </div>
                       {/* Logo (lg-) */}
-                      <a href="#" className="lg:hidden">
+                      <div className="lg:hidden">
                         <span className="sr-only">Your Company</span>
                         <img
                           src="/images/logo.png"
@@ -247,7 +247,7 @@ const Home: NextPage = () => {
                         <p className="inline pl-2 font-sans text-xl font-medium text-white">
                           {RestaurantTitle()}
                         </p>
-                      </a>
+                      </div>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
@@ -310,12 +310,12 @@ const Home: NextPage = () => {
                   Course Menu...
                   <p className="text-lg">
                     ...based on{" "}
-                    <a
+                    <Link
                       className="italic text-blue-500"
                       href="https://texasfarmersmarket.org/in-season/"
                     >
-                      What's In Season.
-                    </a>
+                      What&apos;s In Season.
+                    </Link>
                   </p>
                 </h2>
               </div>

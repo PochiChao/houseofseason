@@ -1,5 +1,3 @@
-import React from "react";
-
 function RestaurantTitle(){
     const currentMonth = new Date().getMonth();
     let currentSeason = "";
