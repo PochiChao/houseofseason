@@ -13,7 +13,7 @@ import RestaurantTitle from "../components/restaurantTitle";
 
 const previousEvents = [
   {
-    date: "November 2022",
+    key: "November 2022",
     courseOne: 
     {
       dishName: "Mashed Potatoes, Broccoli with Balsamic Glaze, Roasted Garlic Dip",
@@ -34,7 +34,7 @@ const previousEvents = [
     },
   },
   {
-    date: "August 2022",
+    key: "August 2022",
     courseOne: 
     {
       dishName: "",
@@ -55,7 +55,7 @@ const previousEvents = [
     },
   },
   {
-    date: "July 2022 Dinner",
+    key: "July 2022 Dinner",
     courseOne: 
     {
       dishName: "Poached Egg, Charred Green Beans, Squash Bed",
@@ -76,7 +76,7 @@ const previousEvents = [
     },
   },
   {
-    date: "July 2022 Brunch",
+    key: "July 2022 Brunch",
     courseOne: 
     {
       dishName: "",
@@ -97,7 +97,7 @@ const previousEvents = [
     },
   },
   {
-    date: "March 2022",
+    key: "March 2022",
     courseOne: 
     {
       dishName: "Crudités with Hummus, Baba Ghanoush, and Chimichurri",
@@ -301,15 +301,16 @@ const Home: NextPage = () => {
         </div>
         <main>
           {previousEvents.map((previousEvent) => (
-            <section
+            <div
               aria-labelledby="collection-heading"
               className="mx-auto max-w-xl px-4 pt-12 sm:px-6 sm:pt-12 lg:max-w-7xl lg:px-8"
+              key={previousEvent.key}
             >
               <h2
                 id="collection-heading"
                 className="text-2xl font-bold tracking-tight text-gray-900"
               >
-                {previousEvent.date}
+                {previousEvent.key}
               </h2>
               <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
                 <div className="group block">
@@ -391,7 +392,7 @@ const Home: NextPage = () => {
                   </p>
                 </div>
               </div>
-            </section>
+            </div>
           ))}
         </main>
         <Footer />
