@@ -66,7 +66,7 @@ const previousEvents = [
     {
       dishName: "Beet Greens, Walnuts, Pine Nuts Galette with Roasted Beets, Cucumber Salad",
       description: "",
-      img: "/images/cookingportfolio/7_16_22_Second.jpg"
+      img: "/images/cookingportfolio/7_16_22_Second.JPG"
     },
     courseThree:
     {
@@ -114,7 +114,7 @@ const previousEvents = [
     {
       dishName: "Coffee Cake with Cinnamon Crumb",
       description: "",
-      img: "/images/cookingportfolio/3_19_22_Third.jpg"
+      img: "/images/cookingportfolio/3_19_22_Third.JPG"
     },
   },
 ];
