@@ -175,28 +175,24 @@ const Home: NextPage = () => {
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
-                        <Link
-                          href="/eventHistory"
-                          className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
-                        >
-                          Event History
-                        </Link>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href=""
-                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
-                          >
-                            Chef&apos;s Personal Website
-                          </Link>
-                        </div>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href="/contactPage"
-                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
-                          >
-                            Contact Me
-                          </Link>
-                        </div>
+                  <Link
+                    href="/eventHistory"
+                    className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
+                  >
+                    Event History
+                  </Link>
+                  <Link
+                    href=""
+                    className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block lg:text-lg"
+                  >
+                    Chef&apos;s Personal Website
+                  </Link>
+                  <Link
+                    href="/contactPage"
+                    className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
+                  >
+                    Contact Me
+                  </Link>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -227,7 +223,10 @@ const Home: NextPage = () => {
                   <div>
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
-                      <div className="hidden lg:flex lg:flex-1 lg:items-center ">
+                      <Link
+                        href="/"
+                        className="hidden lg:flex lg:flex-1 lg:items-center "
+                      >
                         <div>
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
@@ -239,7 +238,7 @@ const Home: NextPage = () => {
                             {RestaurantTitle()}
                           </p>
                         </div>
-                      </div>
+                      </Link>
 
                       <div className="flex flex-1 items-center md:hidden">
                         <button
@@ -252,8 +251,8 @@ const Home: NextPage = () => {
                         </button>
                       </div>
                       {/* Logo (lg-) */}
-                      <div className="lg:hidden">
-                        <span className="sr-only">Your Company</span>
+                      <Link href="/" className="lg:hidden">
+                        <span className="sr-only">{RestaurantTitle()}</span>
                         <img
                           src="/images/logo.png"
                           alt=""
@@ -262,7 +261,7 @@ const Home: NextPage = () => {
                         <p className="inline pl-2 font-sans text-xl font-medium text-white">
                           {RestaurantTitle()}
                         </p>
-                      </div>
+                      </Link>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
@@ -275,7 +274,7 @@ const Home: NextPage = () => {
                             href=""
                             className="hidden font-sans text-base text-white md:block lg:text-lg"
                           >
-                            Chef's Personal Website
+                            Chef&apos;s Personal Website
                           </Link>
                         </div>
                         <div className="flex items-center md:ml-8">

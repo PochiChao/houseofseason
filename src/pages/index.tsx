@@ -160,28 +160,24 @@ const Home: NextPage = () => {
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
-                        <Link
-                          href="/eventHistory"
-                          className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
-                        >
-                          Event History
-                        </Link>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href=""
-                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
-                          >
-                            Chef&apos;s Personal Website
-                          </Link>
-                        </div>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href="/contactPage"
-                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
-                          >
-                            Contact Me
-                          </Link>
-                        </div>
+                  <Link
+                    href="/eventHistory"
+                    className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
+                  >
+                    Event History
+                  </Link>
+                    <Link
+                      href=""
+                      className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block lg:text-lg"
+                    >
+                      Chef&apos;s Personal Website
+                    </Link>
+                    <Link
+                      href="/contactPage"
+                      className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
+                    >
+                      Contact Me
+                    </Link>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -212,7 +208,10 @@ const Home: NextPage = () => {
                   <div>
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
-                      <div className="hidden lg:flex lg:flex-1 lg:items-center ">
+                      <Link
+                        href="/"
+                        className="hidden lg:flex lg:flex-1 lg:items-center "
+                      >
                         <div>
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
@@ -224,7 +223,7 @@ const Home: NextPage = () => {
                             {RestaurantTitle()}
                           </p>
                         </div>
-                      </div>
+                      </Link>
 
                       <div className="flex flex-1 items-center md:hidden">
                         <button
@@ -237,8 +236,8 @@ const Home: NextPage = () => {
                         </button>
                       </div>
                       {/* Logo (lg-) */}
-                      <div className="lg:hidden">
-                        <span className="sr-only">Your Company</span>
+                      <Link href="/" className="lg:hidden">
+                        <span className="sr-only">{RestaurantTitle()}</span>
                         <img
                           src="/images/logo.png"
                           alt=""
@@ -247,7 +246,7 @@ const Home: NextPage = () => {
                         <p className="inline pl-2 font-sans text-xl font-medium text-white">
                           {RestaurantTitle()}
                         </p>
-                      </div>
+                      </Link>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
@@ -260,7 +259,7 @@ const Home: NextPage = () => {
                             href=""
                             className="hidden font-sans text-base text-white md:block lg:text-lg"
                           >
-                            Chef's Personal Website
+                            Chef&apos;s Personal Website
                           </Link>
                         </div>
                         <div className="flex items-center md:ml-8">
@@ -279,14 +278,14 @@ const Home: NextPage = () => {
             </nav>
           </header>
 
-          <div className="relative mx-auto flex max-w-xl md:max-w-5xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
+          <div className="relative mx-auto flex max-w-xl flex-col items-center py-32 px-6 text-center sm:py-64 md:max-w-5xl lg:px-0">
             <h1 className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
               Welcome to the {RestaurantTitle()}.
             </h1>
-            <p className="max-w-xl lg:max-w-2xl mt-4 text-xl text-white">
+            <p className="mt-4 max-w-xl text-xl text-white lg:max-w-2xl">
               Please take a look at the course menu and drink menu below.
             </p>
-            <p className="max-w-xl lg:max-w-2xl mt-4 text-xl text-white">
+            <p className="mt-4 max-w-xl text-xl text-white lg:max-w-2xl">
               If you would like a drink or have any dietary restrictions, please
               submit a response below so I know about it in advance.
             </p>
@@ -365,7 +364,7 @@ const Home: NextPage = () => {
                 </h2>
               </div>
               <div className="relative px-8 pt-2">
-                <p className="max-w-3xl block text-left text-lg leading-6 ">
+                <p className="block max-w-3xl text-left text-lg leading-6 ">
                   Please submit a drink request at least an hour in advance, and
                   submit a dietary restriction request at least 2 days in
                   advance.
