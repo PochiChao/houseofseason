@@ -149,17 +149,39 @@ const Home: NextPage = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto pb-12 shadow-xl">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-gray-500 pb-12 shadow-xl">
                   <div className="flex px-4 pt-5 pb-2">
                     <button
                       type="button"
-                      className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                      className="-m-2 flex items-center justify-center rounded-md p-2 text-gray-300"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
+                        <Link
+                          href="/eventHistory"
+                          className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
+                        >
+                          Event History
+                        </Link>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href=""
+                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
+                          >
+                            Chef's Personal Website
+                          </Link>
+                        </div>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href="/contactPage"
+                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
+                          >
+                            Contact Me
+                          </Link>
+                        </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -185,12 +207,12 @@ const Home: NextPage = () => {
           <header className="relative z-10">
             <nav aria-label="Top">
               {/* Secondary navigation */}
-              <div className="bg-opacity-10 backdrop-blur-md backdrop-filter">
+              <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                   <div>
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
-                      <div className="lg:flex lg:flex-1 lg:items-center ">
+                      <div className="hidden lg:flex lg:flex-1 lg:items-center ">
                         <a href="/">
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
@@ -203,7 +225,29 @@ const Home: NextPage = () => {
                           </p>
                         </a>
                       </div>
+
+                      <div className="flex flex-1 items-center md:hidden">
+                        <button
+                          type="button"
+                          className=" text-white "
+                          onClick={() => setMobileMenuOpen(true)}
+                        >
+                          <span className="sr-only">Open menu</span>
+                          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </div>
                       {/* Logo (lg-) */}
+                      <a href="#" className="lg:hidden">
+                        <span className="sr-only">Your Company</span>
+                        <img
+                          src="/images/logo.png"
+                          alt=""
+                          className="inline h-8 w-auto"
+                        />
+                        <p className="inline pl-2 font-sans text-xl font-medium text-white">
+                          {RestaurantTitle()}
+                        </p>
+                      </a>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
@@ -214,7 +258,7 @@ const Home: NextPage = () => {
                         <div className="flex items-center md:ml-8">
                           <Link
                             href=""
-                            className="hidden font-sans text-lg text-white md:block"
+                            className="hidden font-sans text-base text-white md:block lg:text-lg"
                           >
                             Chef's Personal Website
                           </Link>
@@ -235,16 +279,15 @@ const Home: NextPage = () => {
             </nav>
           </header>
 
-          <div className="relative mx-auto flex max-w-5xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
+          <div className="relative mx-auto flex max-w-xl md:max-w-5xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
             <h1 className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
               Welcome to the {RestaurantTitle()}.
             </h1>
-            <p className="mt-4 text-xl text-white">
+            <p className="max-w-xl lg:max-w-2xl mt-4 text-xl text-white">
               Please take a look at the course menu and drink menu below.
-              <br></br>
-              <br></br>
-              If you would like a drink or have any dietary restrictions, please{" "}
-              <br></br>
+            </p>
+            <p className="max-w-xl lg:max-w-2xl mt-4 text-xl text-white">
+              If you would like a drink or have any dietary restrictions, please
               submit a response below so I know about it in advance.
             </p>
           </div>
@@ -256,7 +299,7 @@ const Home: NextPage = () => {
               aria-labelledby="category-heading"
               className="pt-6 sm:pt-6 xl:mx-auto xl:max-w-7xl xl:px-8"
             >
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+              <h2 className="px-6 text-4xl font-bold tracking-tight text-gray-900 lg:px-8 xl:px-0">
                 December 2022
               </h2>
               <div className="px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
@@ -322,7 +365,7 @@ const Home: NextPage = () => {
                 </h2>
               </div>
               <div className="relative px-8 pt-2">
-                <p className="block text-left text-lg leading-6 ">
+                <p className="max-w-3xl block text-left text-lg leading-6 ">
                   Please submit a drink request at least an hour in advance, and
                   submit a dietary restriction request at least 2 days in
                   advance.

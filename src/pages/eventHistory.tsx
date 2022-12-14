@@ -23,15 +23,15 @@ const previousEvents = [
     },
     courseTwo:
     {
-      dishName: "Curry-Soy Spiced Chicken, ",
+      dishName: "Curry-Soy Spiced Chicken with Lemon-Miso Kale Salad with Pecans",
       description: "",
-      img: "#"
+      img: ""
     },
     courseThree:
     {
       dishName: "Lemon-Cornmeal Poundcake with Powdered Sugar",
       description: "",
-      img: "#"
+      img: ""
     },
   },
   {
@@ -40,7 +40,7 @@ const previousEvents = [
     {
       dishName: "",
       description: "",
-      img: "#"
+      img: ""
     },
     courseTwo:
     {
@@ -109,7 +109,7 @@ const previousEvents = [
     {
       dishName: "Yorkshire Pudding with Fried Eggs, Sausages, Chives",
       description: "Sides - Charred Radishes, Pistachio-Arugula Salad with Tahini Dressing, Roasted Pork Tenderloin",
-      img: "/images/cookingportfolio/3_19_22_Overall.jpg"
+      img: "/images/cookingportfolio/3_19_22_Second.jpg"
     },
     courseThree:
     {
@@ -132,7 +132,10 @@ const Home: NextPage = () => {
       <Head>
         <title>{RestaurantTitle()}</title>
       </Head>
-      <div className="bg-white">
+      <Head>
+        <title>{RestaurantTitle()}</title>
+      </Head>
+      <div className="bg-stone-100">
         {/* Mobile menu */}
         <Transition.Root show={mobileMenuOpen} as={Fragment}>
           <Dialog
@@ -162,17 +165,39 @@ const Home: NextPage = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-gray-500 pb-12 shadow-xl">
                   <div className="flex px-4 pt-5 pb-2">
                     <button
                       type="button"
-                      className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                      className="-m-2 flex items-center justify-center rounded-md p-2 text-gray-300"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
+                        <Link
+                          href="/eventHistory"
+                          className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
+                        >
+                          Event History
+                        </Link>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href=""
+                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block lg:text-lg"
+                          >
+                            Chef's Personal Website
+                          </Link>
+                        </div>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href="/contactPage"
+                            className="font-sans py-3 pl-6 pr-3 text-3xl text-white md:block"
+                          >
+                            Contact Me
+                          </Link>
+                        </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -199,11 +224,11 @@ const Home: NextPage = () => {
             <nav aria-label="Top">
               {/* Secondary navigation */}
               <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8">
                   <div>
                     <div className="flex h-16 items-center justify-between">
                       {/* Logo (lg+) */}
-                      <div className="lg:flex lg:flex-1 lg:items-center ">
+                      <div className="hidden lg:flex lg:flex-1 lg:items-center ">
                         <a href="/">
                           <span className="sr-only">{RestaurantTitle()}</span>
                           <img
@@ -216,35 +241,48 @@ const Home: NextPage = () => {
                           </p>
                         </a>
                       </div>
+
+                      <div className="flex flex-1 items-center md:hidden">
+                        <button
+                          type="button"
+                          className=" text-white "
+                          onClick={() => setMobileMenuOpen(true)}
+                        >
+                          <span className="sr-only">Open menu</span>
+                          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </div>
                       {/* Logo (lg-) */}
-                      <a href="/" className="lg:hidden">
-                        <span className="sr-only">{RestaurantTitle()}</span>
+                      <a href="#" className="lg:hidden">
+                        <span className="sr-only">Your Company</span>
                         <img
                           src="/images/logo.png"
                           alt=""
-                          className="h-8 w-auto "
+                          className="inline h-8 w-auto"
                         />
+                        <p className="inline pl-2 font-sans text-xl font-medium text-white">
+                          {RestaurantTitle()}
+                        </p>
                       </a>
                       <div className="flex flex-1 items-center justify-end">
                         <Link
                           href="/eventHistory"
-                          className="hidden font-sans text-lg text-white lg:block"
+                          className="hidden font-sans text-lg text-white md:block"
                         >
                           Event History
                         </Link>
-
-                        <div className="flex items-center lg:ml-8">
-                          {/* Help */}
-                          <a href="#" className="p-2 text-white lg:hidden">
-                            <span className="sr-only">Help</span>
-                            <QuestionMarkCircleIcon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </a>
+                        <div className="flex items-center md:ml-8">
+                          <Link
+                            href=""
+                            className="hidden font-sans text-base text-white md:block lg:text-lg"
+                          >
+                            Chef's Personal Website
+                          </Link>
+                        </div>
+                        <div className="flex items-center md:ml-8">
                           <Link
                             href="/contactPage"
-                            className="hidden font-sans text-lg text-white lg:block"
+                            className="hidden font-sans text-lg text-white md:block"
                           >
                             Contact Me
                           </Link>
@@ -256,7 +294,6 @@ const Home: NextPage = () => {
               </div>
             </nav>
           </header>
-
           <div className="relative mx-auto flex max-w-3xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0">
             <h1 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
               Previous Events
@@ -265,7 +302,6 @@ const Home: NextPage = () => {
           </div>
         </div>
         <main>
-          {/* Collection section */}
           {previousEvents.map((previousEvent) => (
             <section
               aria-labelledby="collection-heading"
@@ -281,25 +317,80 @@ const Home: NextPage = () => {
                 <div className="group block">
                   <div
                     aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                    className="overflow-hidden rounded-lg group-hover:opacity-75"
                   >
-                    <img
-                      src={previousEvent.courseOne.img}
-                      alt={
-                        previousEvent.courseOne.dishName +
-                        " " +
-                        previousEvent.courseOne.description
-                      }
-                      className="h-full w-full object-cover object-center"
-                    />
+                    {previousEvent.courseOne.img === "" ? (
+                      ""
+                    ) : (
+                      <img
+                        src={previousEvent.courseOne.img}
+                        alt={
+                          previousEvent.courseOne.dishName +
+                          " " +
+                          previousEvent.courseOne.description
+                        }
+                        className="h-full w-full object-cover object-center"
+                      />
+                    )}
                   </div>
                   <h3 className="mt-4 text-base font-semibold text-gray-900">
                     {previousEvent.courseOne.dishName}
                   </h3>
                   <p className="mt-2 mb-6 text-sm text-gray-500">
                     {previousEvent.courseOne.description}
-                  </p> 
-                   
+                  </p>
+                </div>
+                <div className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="overflow-hidden rounded-lg group-hover:opacity-75"
+                  >
+                    {previousEvent.courseTwo.img === "" ? (
+                      ""
+                    ) : (
+                      <img
+                        src={previousEvent.courseTwo.img}
+                        alt={
+                          previousEvent.courseTwo.dishName +
+                          " " +
+                          previousEvent.courseTwo.description
+                        }
+                        className="h-full w-full object-cover object-center"
+                      />
+                    )}
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">
+                    {previousEvent.courseTwo.dishName}
+                  </h3>
+                  <p className="mt-2 mb-6 text-sm text-gray-500">
+                    {previousEvent.courseTwo.description}
+                  </p>
+                </div>
+                <div className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="overflow-hidden rounded-lg group-hover:opacity-75"
+                  >
+                    {previousEvent.courseThree.img === "" ? (
+                      ""
+                    ) : (
+                      <img
+                        src={previousEvent.courseThree.img}
+                        alt={
+                          previousEvent.courseThree.dishName +
+                          " " +
+                          previousEvent.courseThree.description
+                        }
+                        className="h-full w-full object-cover object-center"
+                      />
+                    )}
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">
+                    {previousEvent.courseThree.dishName}
+                  </h3>
+                  <p className="mt-2 mb-6 text-sm text-gray-500">
+                    {previousEvent.courseThree.description}
+                  </p>
                 </div>
               </div>
             </section>
