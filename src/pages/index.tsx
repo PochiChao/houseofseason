@@ -1,16 +1,14 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { trpc } from "../utils/trpc";
+import { useState } from 'react'
 import Footer from "../components/Footer";
 import RestaurantTitle from "../components/restaurantTitle";
+import CreateCourseMenu from "../components/CreateCourseMenu";
+import CreateDrinkMenu from "../components/CreateDrinkMenu";
+import MobileMenuAndNavBar from "../components/MobileMenuAndNavBar";
 import axios from "axios";
+
 
 const courseMenu = [
   {
@@ -44,46 +42,23 @@ const teaMenu = [
   { name: "lemon ginger tea / tea latte" },
 ];
 
-const cocktailMenu = [
-  { name: "c: paloma" }, 
-  { name: "m: mango mule" }];
+const cocktailMenu = [{ name: "c: paloma" }, { name: "m: mango mule" }];
 
 function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-function createCourseMenu(course: {id: string, dishName: string, description: string}){
-  return (
-    <div className="relative overflow-hidden pt-4">
-      <div className="relative px-12 lg:px-16">
-        <div className="max-w-prose text-lg">
-          <h1>
-            <span className="block text-left text-2xl font-bold leading-6 tracking-tight text-gray-900 sm:text-2xl">
-              {course.id}
-            </span>
-          </h1>
-          <p className="text-left text-lg leading-6">{course.dishName}</p>
-          <p className="text-left text-lg leading-6">{course.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function createDrinkMenu(drink:{name: string}){
-  return (
-    <p className="text-left text-lg leading-6">{drink.name}</p>
-  );
-}
-
 const Home: NextPage = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [requestText, setRequestText] = useState({
     name: "",
     message: "",
   });
-  
+
+  const mainTitle = `Welcome to the ${RestaurantTitle()}`
+  const secondTitle = "Please take a look at the course menu and drink menu below."
+  const thirdTitle = "If you would like a drink or have any dietary restrictions, please submit a response below so I know about it in advance."
+
   function submitClick(){
     setSubmitClicked(true);
     setTimeout(() => setSubmitClicked(false),2000);
@@ -120,177 +95,8 @@ const Home: NextPage = () => {
         <title>{RestaurantTitle()}</title>
       </Head>
       <div className="bg-stone-100">
-        {/* Mobile menu */}
-        <Transition.Root show={mobileMenuOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="relative z-40 lg:hidden"
-            onClose={setMobileMenuOpen}
-          >
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </Transition.Child>
+        <MobileMenuAndNavBar mainTitle={mainTitle} secondTitle={secondTitle} thirdTite={thirdTitle}/>
 
-            <div className="fixed inset-0 z-40 flex">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-gray-500 pb-12 shadow-xl">
-                  <div className="flex px-4 pt-5 pb-2">
-                    <button
-                      type="button"
-                      className="-m-2 flex items-center justify-center rounded-md p-2 text-gray-300"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <span className="sr-only">Close menu</span>
-                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </div>
-                  <Link
-                    href="/eventHistory"
-                    className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
-                  >
-                    Event History
-                  </Link>
-                    <Link
-                      href=""
-                      className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block lg:text-lg"
-                    >
-                      Chef&apos;s Personal Website
-                    </Link>
-                    <Link
-                      href="/contactPage"
-                      className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block"
-                    >
-                      Contact Me
-                    </Link>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </Dialog>
-        </Transition.Root>
-
-        {/* Hero section */}
-        <div className="relative bg-gray-900">
-          {/* Decorative image and overlay */}
-          <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-            <img
-              src="images/LandscapeFallWinter.jpg"
-              alt=""
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gray-900 opacity-50"
-          />
-
-          {/* Navigation */}
-          <header className="relative z-10">
-            <nav aria-label="Top">
-              {/* Secondary navigation */}
-              <div className="bg-white bg-opacity-10 backdrop-blur-md backdrop-filter">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                  <div>
-                    <div className="flex h-16 items-center justify-between">
-                      {/* Logo (lg+) */}
-                      <Link
-                        href="/"
-                        className="hidden lg:flex lg:flex-1 lg:items-center "
-                      >
-                        <div>
-                          <span className="sr-only">{RestaurantTitle()}</span>
-                          <img
-                            className="inline h-8 w-auto"
-                            src="/images/logo.png"
-                            alt=""
-                          />
-                          <p className="inline pl-2 font-sans text-xl font-medium text-white">
-                            {RestaurantTitle()}
-                          </p>
-                        </div>
-                      </Link>
-
-                      <div className="flex flex-1 items-center md:hidden">
-                        <button
-                          type="button"
-                          className=" text-white "
-                          onClick={() => setMobileMenuOpen(true)}
-                        >
-                          <span className="sr-only">Open menu</span>
-                          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                        </button>
-                      </div>
-                      {/* Logo (lg-) */}
-                      <Link href="/" className="lg:hidden">
-                        <span className="sr-only">{RestaurantTitle()}</span>
-                        <img
-                          src="/images/logo.png"
-                          alt=""
-                          className="inline h-8 w-auto"
-                        />
-                        <p className="inline pl-2 font-sans text-xl font-medium text-white">
-                          {RestaurantTitle()}
-                        </p>
-                      </Link>
-                      <div className="flex flex-1 items-center justify-end">
-                        <Link
-                          href="/eventHistory"
-                          className="hidden font-sans text-lg text-white md:block"
-                        >
-                          Event History
-                        </Link>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href=""
-                            className="hidden font-sans text-base text-white md:block lg:text-lg"
-                          >
-                            Chef&apos;s Personal Website
-                          </Link>
-                        </div>
-                        <div className="flex items-center md:ml-8">
-                          <Link
-                            href="/contactPage"
-                            className="hidden font-sans text-lg text-white md:block"
-                          >
-                            Contact Me
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </header>
-
-          <div className="relative mx-auto flex max-w-xl flex-col items-center py-32 px-6 text-center sm:py-64 md:max-w-5xl lg:px-0">
-            <h1 className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
-              Welcome to the {RestaurantTitle()}.
-            </h1>
-            <p className="mt-4 max-w-xl text-xl text-white lg:max-w-2xl">
-              Please take a look at the course menu and drink menu below.
-            </p>
-            <p className="mt-4 max-w-xl text-xl text-white lg:max-w-2xl">
-              If you would like a drink or have any dietary restrictions, please
-              submit a response below so I know about it in advance.
-            </p>
-          </div>
-        </div>
         <main>
           <div>
             {/* Category section */}
@@ -318,7 +124,7 @@ const Home: NextPage = () => {
                   </p>
                 </h2>
               </div>
-              {courseMenu.map(createCourseMenu)}
+              {courseMenu.map(CreateCourseMenu)}
             </section>
             <section
               aria-labelledby="category-heading"
@@ -343,8 +149,8 @@ const Home: NextPage = () => {
                         </p>
                       </span>
                     </h1>
-                    {coffeeMenu.map(createDrinkMenu)}
-                    {teaMenu.map(createDrinkMenu)}
+                    {coffeeMenu.map(CreateDrinkMenu)}
+                    {teaMenu.map(CreateDrinkMenu)}
                   </div>
                   <div className="mt-4 max-w-prose text-lg">
                     <h1>
@@ -352,7 +158,7 @@ const Home: NextPage = () => {
                         Cocktail + Mocktail
                       </span>
                     </h1>
-                    {cocktailMenu.map(createDrinkMenu)}
+                    {cocktailMenu.map(CreateDrinkMenu)}
                   </div>
                 </div>
               </div>{" "}
