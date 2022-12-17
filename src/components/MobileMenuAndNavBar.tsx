@@ -60,7 +60,7 @@ function MobileMenuAndNavBar(props: any) {
                     Event History
                   </Link>
                   <Link
-                    href=""
+                    href="https://personalspotlight.vercel.app/"
                     className="py-3 pl-6 pr-3 font-sans text-3xl text-white md:block lg:text-lg"
                   >
                     Chef&apos;s Personal Website
@@ -144,7 +144,7 @@ function MobileMenuAndNavBar(props: any) {
                         </Link>
                         <div className="flex items-center md:ml-8">
                           <Link
-                            href=""
+                            href="https://personalspotlight.vercel.app/"
                             className="hidden font-sans text-base text-white md:block lg:text-lg"
                           >
                             Chef&apos;s Personal Website
