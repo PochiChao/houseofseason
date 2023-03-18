@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from 'react'
+import { useState } from "react";
 import Footer from "../components/Footer";
 import RestaurantTitle from "../components/restaurantTitle";
 import CreateCourseMenu from "../components/CreateCourseMenu";
@@ -9,23 +9,22 @@ import CreateDrinkMenu from "../components/CreateDrinkMenu";
 import MobileMenuAndNavBar from "../components/MobileMenuAndNavBar";
 import axios from "axios";
 
-
 const courseMenu = [
   {
     id: "first",
-    dishName: "Patatas Bravas",
-    description: "roasted potatoes with 3 sauces: spinach dip, aioli, tonnato",
+    dishName: "Very Non-Traditional Sushi",
+    description: "charred brussels sprouts, cucumbers, mayo, smoked salmon",
   },
   {
     id: "second",
-    dishName: "Unconventional Bibimbap",
+    dishName: "Garlic-Lemon-Rosemary Rainbow Trout",
     description:
-      "rice with fried egg; gochujang tofu; reduced cabbage; pickled cucumbers, carrots",
+      "paired with sauteed radishes and their greens, over whipped Greek yogurt",
   },
   {
     id: "third",
-    dishName: "Gluten-free Beet Poundcake",
-    description: "beets, almonds, powdered sugar, cinnamon, nutmeg",
+    dishName: "Matcha Pancakes",
+    description: "with maple syrup and/or brown butter",
   },
 ];
 
@@ -44,8 +43,8 @@ const teaMenu = [
 
 const cocktailMenu = [{ name: "c: paloma" }, { name: "m: mango mule" }];
 
-function classNames(...classes:string[]) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
 }
 
 const Home: NextPage = () => {
@@ -55,32 +54,34 @@ const Home: NextPage = () => {
     message: "",
   });
 
-  const mainTitle = `Welcome to the ${RestaurantTitle()}`
-  const secondTitle = "Please take a look at the course menu and drink menu below."
-  const thirdTitle = "If you would like a drink or have any dietary restrictions, please submit a response below so I know about it in advance."
+  const mainTitle = `Welcome to the ${RestaurantTitle()}`;
+  const secondTitle =
+    "Please take a look at the course menu and drink menu below.";
+  const thirdTitle =
+    "If you would like a drink or have any dietary restrictions, please submit a response below so I know about it in advance.";
 
-  function submitClick(){
+  function submitClick() {
     setSubmitClicked(true);
-    setTimeout(() => setSubmitClicked(false),2000);
+    setTimeout(() => setSubmitClicked(false), 2000);
 
     const url = "https://api.emailjs.com/api/v1.0/email/send";
     const config = {
-      service_id: 'service_vvbgyu8',
-      template_id: 'template_bsszdnt',
-      user_id: 'hBPrKO3PktefWm-h1',
+      service_id: "service_vvbgyu8",
+      template_id: "template_bsszdnt",
+      user_id: "hBPrKO3PktefWm-h1",
       accessToken: process.env.EMAILJS_API_KEY,
       template_params: {
-          'person': requestText.name,
-          'message': requestText.message
-      }
-    }
+        person: requestText.name,
+        message: requestText.message,
+      },
+    };
     axios.post(url, config).then((response) => {
       console.log(response);
     });
   }
 
   function handleChange(event: { target: { name: any; value: any } }) {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     setRequestText((prevValue: { name: string; message: string }) => {
       return {
         ...prevValue,
@@ -95,7 +96,11 @@ const Home: NextPage = () => {
         <title>{RestaurantTitle()}</title>
       </Head>
       <div className="bg-stone-100">
-        <MobileMenuAndNavBar mainTitle={mainTitle} secondTitle={secondTitle} thirdTite={thirdTitle}/>
+        <MobileMenuAndNavBar
+          mainTitle={mainTitle}
+          secondTitle={secondTitle}
+          thirdTite={thirdTitle}
+        />
 
         <main>
           <div>
@@ -171,7 +176,7 @@ const Home: NextPage = () => {
               </div>
               <div className="relative px-8 pt-2">
                 <p className="block max-w-3xl text-left text-lg leading-6 ">
-                  Please submit a drink request at least an hour in advance, and
+                  Please submit a drink request at least 2 hours in advance, and
                   submit a dietary restriction request at least 2 days in
                   advance.
                 </p>
