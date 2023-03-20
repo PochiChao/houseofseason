@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function CreateCourseMenu(course: {
   id: string;
@@ -6,7 +6,7 @@ function CreateCourseMenu(course: {
   description: string;
 }) {
   return (
-    <div className="relative overflow-hidden pt-4">
+    <div key={course.id} className="relative overflow-hidden pt-4">
       <div className="relative px-12 lg:px-16">
         <div className="max-w-prose text-lg">
           <h1>

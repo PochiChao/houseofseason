@@ -1,17 +1,34 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+type EventsCourseOne {
+  description String
+  dishName    String
+  img         String
+}
+
+type EventsCourseThree {
+  description String
+  dishName    String
+  img         String
+}
+
+type EventsCourseTwo {
+  description String
+  dishName    String
+  img         String
+}
+
+model events {
+  id          String            @id @default(auto()) @map("_id") @db.ObjectId
+  courseOne   EventsCourseOne
+  courseThree EventsCourseThree
+  courseTwo   EventsCourseTwo
+  event       String
 }
