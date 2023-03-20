@@ -41,7 +41,7 @@ const teaMenu = [
   { name: "lemon ginger tea / tea latte" },
 ];
 
-const cocktailMenu = [{ name: "c: paloma" }, { name: "m: mango mule" }];
+// const cocktailMenu = [{ name: "c: paloma" }, { name: "m: mango mule" }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -52,6 +52,10 @@ const Home: NextPage = () => {
   const [requestText, setRequestText] = useState({
     name: "",
     message: "",
+  });
+  const monthYear = new Date().toLocaleString("en-us", {
+    month: "long",
+    year: "numeric",
   });
 
   const mainTitle = `Welcome to the ${RestaurantTitle()}`;
@@ -110,7 +114,7 @@ const Home: NextPage = () => {
               className="pt-6 sm:pt-6 xl:mx-auto xl:max-w-7xl xl:px-8"
             >
               <h2 className="px-6 text-4xl font-bold tracking-tight text-gray-900 lg:px-8 xl:px-0">
-                December 2022
+                {monthYear}
               </h2>
               <div className="px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
                 <h2
@@ -163,7 +167,8 @@ const Home: NextPage = () => {
                         Cocktail + Mocktail
                       </span>
                     </h1>
-                    {cocktailMenu.map(CreateDrinkMenu)}
+                    {/* {cocktailMenu.map(CreateDrinkMenu)} */}
+                    None offered this time, unfortunately.
                   </div>
                 </div>
               </div>{" "}
