@@ -11,7 +11,9 @@ type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const previousEvents = await prisma.events.findMany();
+  const previousEvents = await prisma.events.findMany({
+    orderBy: [{ event: "desc" }],
+  });
   return { props: { previousEvents } };
 };
 
