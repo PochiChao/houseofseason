@@ -12,19 +12,20 @@ import axios from "axios";
 const courseMenu = [
   {
     id: "first",
-    dishName: "Very Non-Traditional Sushi",
-    description: "charred brussels sprouts, cucumbers, mayo, smoked salmon",
+    dishName: "Egg Drop Soup",
+    description:
+      "topped with fried shallots and scallion curls, and paired with pork meatballs.",
   },
   {
     id: "second",
-    dishName: "Garlic-Lemon-Rosemary Rainbow Trout",
+    dishName: "Non-Traditional Bibimbap",
     description:
-      "paired with sauteed radishes and their greens, over whipped Greek yogurt",
+      "bean sprouts, lemon-miso kale, miso turnips, baby bok choy, pork belly",
   },
   {
     id: "third",
-    dishName: "Matcha Pancakes",
-    description: "with maple syrup and/or brown butter",
+    dishName: "Basil Pistachio Cookies",
+    description: "with lemon zest and basil infused powdered sugar",
   },
 ];
 
