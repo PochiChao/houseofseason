@@ -14,18 +14,18 @@ const courseMenu = [
     id: "first",
     dishName: "Egg Drop Soup",
     description:
-      "topped with fried shallots and scallion curls, and paired with pork meatballs.",
+      "topped with fried shallots and scallion curls, optional addition: lion's head (pork) meatballs.",
   },
   {
     id: "second",
-    dishName: "Non-Traditional Bibimbap",
+    dishName: "Highly Unconventional Bibimbap",
     description:
-      "bean sprouts, lemon-miso kale, miso turnips, baby bok choy, pork belly",
+      "bean sprouts, julienned chayote squash, rice vinegar pickled carrots + cucumbers, miso daikon, stir-fried baby bok choy, fried egg. optional addition: pork belly or massaman curry",
   },
   {
     id: "third",
-    dishName: "Basil Pistachio Cookies",
-    description: "with lemon zest and basil infused powdered sugar",
+    dishName: "Coconut-Banana-Rice Pudding Cups",
+    description: "with Vanilla Wafers or Butter Shortbread",
   },
 ];
 
