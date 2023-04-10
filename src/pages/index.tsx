@@ -12,20 +12,19 @@ import axios from "axios";
 const courseMenu = [
   {
     id: "first",
-    dishName: "Egg Drop Soup",
+    dishName: "Sorrel Soup",
     description:
-      "topped with fried shallots and scallion curls, optional addition: lion's head (pork) meatballs.",
+      "paired with browned cauliflower, minced parsley, toasted breadcrumbs and pine nuts",
   },
   {
     id: "second",
-    dishName: "Highly Unconventional Bibimbap",
-    description:
-      "bean sprouts, julienned chayote squash, rice vinegar pickled carrots + cucumbers, miso daikon, stir-fried baby bok choy, fried egg. optional addition: pork belly or massaman curry",
+    dishName: "Rigatoni alla Bolognese ",
+    description: "with Mushroom Meatballs",
   },
   {
     id: "third",
-    dishName: "Coconut-Banana-Rice Pudding Cups",
-    description: "with Vanilla Wafers or Butter Shortbread",
+    dishName: "Pistachio Basil Cookies",
+    description: "with Lemon Zest Sugar",
   },
 ];
 
