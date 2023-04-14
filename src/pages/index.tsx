@@ -12,14 +12,14 @@ import axios from "axios";
 const courseMenu = [
   {
     id: "first",
-    dishName: "Sorrel Soup",
+    dishName: "Potato-Leek Soup",
     description:
       "paired with browned cauliflower, minced parsley, toasted breadcrumbs and pine nuts",
   },
   {
     id: "second",
-    dishName: "Rigatoni alla Bolognese ",
-    description: "with Mushroom Meatballs",
+    dishName: "Pappardelle alla Bolognese ",
+    description: "with Mushroom-Eggplant Meatballs",
   },
   {
     id: "third",
