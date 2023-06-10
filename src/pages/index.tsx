@@ -12,19 +12,18 @@ import axios from "axios";
 const courseMenu = [
   {
     id: "first",
-    dishName: "Potato-Leek Soup",
-    description:
-      "paired with browned cauliflower, minced parsley, toasted breadcrumbs and pine nuts",
+    dishName: "Roasted Potatoes with Raspberry-Lemon-Dressed Salad",
+    description: "",
   },
   {
     id: "second",
-    dishName: "Pappardelle alla Bolognese ",
-    description: "with Mushroom-Eggplant Meatballs",
+    dishName: "Roasted Pepper Pasta",
+    description: "paired with Curry-Soy-Butter Panko-Crusted Tofu / Chicken",
   },
   {
     id: "third",
-    dishName: "Pistachio Basil Cookies",
-    description: "with Lemon Zest Sugar",
+    dishName: "Blueberry Lemon Poundcake",
+    description: "with Lemon-Lavender Honey Glaze",
   },
 ];
 
