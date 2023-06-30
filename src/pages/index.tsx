@@ -69,7 +69,7 @@ const Home: NextPage = () => {
 
     const url = "https://api.emailjs.com/api/v1.0/email/send";
     const config = {
-      service_id: "service_vvbgyu8",
+      service_id: "service_oq93uc2",
       template_id: "template_bsszdnt",
       user_id: "hBPrKO3PktefWm-h1",
       accessToken: process.env.EMAILJS_API_KEY,
